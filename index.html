@@ -46,7 +46,7 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
 #tg{width:36px;height:36px;border-radius:12px}
 #tg svg{transform:rotate(180deg);transition:.2s}
 .shut #tg svg{transform:none}
-.shut .tb{display:none}
+.tb{display:grid;grid-template-rows:1fr;transition:grid-template-rows .35s ease}.ti{overflow:hidden;min-height:0}.shut .tb{grid-template-rows:0fr}
 .pts{display:flex;gap:6px;overflow-x:auto;padding:10px 0 2px}
 .pt{width:36px;height:36px;border-radius:50%;border:0;background:none;color:var(--mut);flex:none}
 .pt.on{color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));box-shadow:0 6px 14px var(--glow)}
@@ -79,6 +79,41 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
 .gate{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:20px;background:radial-gradient(120% 55% at 50% -8%,var(--bg2),transparent 65%),var(--bg)}
 .gate .card{max-width:380px;text-align:center}
 .gate p{line-height:2}
+
+button{transition:transform .15s,box-shadow .2s,background-color .2s,border-color .2s,opacity .2s}
+button:active:not(:disabled){transform:scale(.93)}
+.gb{background-size:220% 220%;animation:sh 7s ease-in-out infinite}
+@keyframes sh{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes si{from{transform:translateX(100%)}to{transform:none}}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+@keyframes sk{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 var(--glow)}100%{box-shadow:0 0 0 10px transparent}}
+@keyframes pu{0%{box-shadow:0 0 0 0 var(--glow),0 8px 26px var(--glow)}100%{box-shadow:0 0 0 18px transparent,0 8px 26px var(--glow)}}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+#v-read,#v-chella{animation:fu .35s ease both}
+.card{animation:fu .4s ease both}
+.nb.on .i{animation:pop .4s ease}
+.cd.new{animation:pop .45s ease}
+.cd.nx{border-color:var(--g2);color:var(--tx);animation:ring 2s ease-out infinite}
+.cd.lk{opacity:.4;border-style:dashed}
+.cd.shake{animation:sk .35s}
+.pl.on{animation:pu 2s ease-out infinite}
+.dr.on .dp{animation:si .28s cubic-bezier(.2,.8,.2,1)}
+.dr.on .sc{animation:fi .25s}
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:14px;margin-inline-start:8px;vertical-align:middle}
+.eq i{width:3px;height:4px;background:var(--g2);border-radius:2px}
+.eq.on i{animation:eq .9s ease-in-out infinite}
+.eq.on i:nth-child(2){animation-delay:.2s}.eq.on i:nth-child(3){animation-delay:.4s}.eq.on i:nth-child(4){animation-delay:.1s}
+textarea{width:100%;font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:10px;resize:vertical;min-height:84px;outline:none;margin-top:8px;transition:border-color .2s,box-shadow .2s}
+textarea:focus{border-color:var(--g2);box-shadow:0 0 0 3px var(--glow)}
+.nt{border:1px solid var(--bd);border-radius:16px;padding:10px 12px;margin-top:10px;background:var(--card)}
+.nt.new{animation:fu .4s}
+.nh{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mut);gap:8px}
+.nd{border:0;background:none;color:var(--mut);font-size:13px;padding:2px 8px}
+.np{white-space:pre-wrap;margin-top:4px;font-size:15px;line-height:2}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -86,13 +121,13 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
   <div class="dot" style="width:64px;height:64px;margin:0 auto 10px;background:linear-gradient(135deg,var(--g1),var(--g2))" id="gi"></div>
   <h2 style="margin:6px 0">عضویت در کانال</h2>
   <p>برای استفاده از برنامه، اول در کانال آرتاگراف عضو شوید، بعد برگردید و دکمه‌ی «عضو شدم» را بزنید.</p>
-  <a class="gb" style="display:block" data-x href="https://eitaa.com/artagraph" target="_blank" rel="noopener">عضویت در کانال</a>
-  <button class="gb" style="width:100%;margin-top:10px;background:none;color:var(--tx);box-shadow:none;border:1px solid var(--bd)" id="gok">عضو شدم، ورود</button>
+  <a class="gb" id="gj" style="display:block" data-x href="https://eitaa.com/artagraph" target="_blank" rel="noopener">۱) عضویت در کانال</a>
+  <button class="gb" style="width:100%;margin-top:10px;background:none;color:var(--tx);box-shadow:none;border:1px solid var(--bd)" id="gok" disabled style="opacity:.45">۲) عضو شدم، ورود</button>
 </div></div>
 
 <div class="w" id="app" style="display:none">
   <div class="top">
-    <button class="ib" id="menu" aria-label="منو"></button>
+    <button class="ib" id="menu" data-ns="1" aria-label="منو"></button>
     <h1>زیارت عاشورا</h1>
     <button class="ib" id="th" aria-label="تم"></button>
   </div>
@@ -100,13 +135,13 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
   <section id="v-read">
     <div class="rp"><div class="l"><span id="rpt">در حال خواندن زیارت عاشورا</span><span id="rpn">۰٪</span></div><div class="b"><i id="rpb"></i></div></div>
     <div class="chips">
-      <button class="chip" id="c1"><div class="dot" style="background:#8f5bff" id="c1i"></div><span id="chipn"></span></button>
+      <button class="chip" id="c1" data-ns="1"><div class="dot" style="background:#8f5bff" id="c1i"></div><span id="chipn"></span></button>
       <button class="chip" id="c2"><div class="dot" style="background:#ff8a3d" id="c2i"></div><span id="chipc"></span></button>
     </div>
     <div class="card">
       <div class="pr">
-        <button class="pl" id="pl" aria-label="پخش"></button>
-        <div class="m"><b id="rn"></b>
+        <button class="pl" id="pl" data-ns="1" aria-label="پخش"></button>
+        <div class="m"><div><b id="rn" style="display:inline"></b><span class="eq" id="eq"><i></i><i></i><i></i><i></i></span></div>
           <input type="range" id="sk" min="0" max="100" value="0">
           <div class="tm"><span id="cur">۰:۰۰</span><span id="dur">۰:۰۰</span></div>
           <div class="er" id="er"></div></div>
@@ -117,11 +152,11 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
         <button class="tl" id="trb" style="display:none">ترجمه</button>
         <button class="tl" id="fm">A−</button><button class="tl" id="fp">A+</button>
         <button class="ib" id="tg" aria-label="باز و بسته کردن متن"></button></div>
-      <div class="tb">
+      <div class="tb"><div class="ti">
         <div class="pts" id="pts" style="display:none"></div>
         <div id="warn" class="note" style="display:none"></div>
         <div class="txt" id="txt"></div>
-        <div class="tr" id="tr" style="display:none"></div>
+        <div class="tr" id="tr" style="display:none"></div></div>
       </div>
     </div>
   </section>
@@ -129,11 +164,17 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
   <section id="v-chella" style="display:none">
     <div class="card">
       <div class="big" id="cc"></div>
-      <div class="sm">چله‌ی زیارت عاشورا؛ هر روز که خواندی، همان روز را تیک بزن</div>
+      <div class="sm" id="chh"></div>
       <div class="bar2"><i id="cb"></i></div>
       <div class="cg" id="cg"></div>
       <div class="note" id="cm" style="display:none">چله‌ات کامل شد 🖤 قبول باشد.</div>
       <button class="gb" style="width:100%;margin-top:12px;background:none;color:var(--tx);box-shadow:none;border:1px solid var(--bd)" id="cr">شروع دوباره‌ی چله</button>
+    </div>
+    <div class="card" id="nc">
+      <b>یادداشت‌ها</b>
+      <textarea id="ni" maxlength="1000" placeholder="نیت، حال‌وهوای امروز، دعا…"></textarea>
+      <button class="gb" id="na" style="width:100%;margin-top:8px">ثبت یادداشت</button>
+      <div id="nl"></div>
     </div>
   </section>
 </div>
@@ -144,7 +185,7 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
 </nav>
 
 <div class="dr" id="dr"><div class="sc" id="sc"></div><div class="dp">
-  <div class="dh"><b>منو</b><button class="ib" id="dx" aria-label="بستن"></button></div>
+  <div class="dh"><b>منو</b><button class="ib" id="dx" data-ns="1" aria-label="بستن"></button></div>
   <div class="seg"><button class="on" id="s1">روضه‌ها</button><button id="s2">درباره‌ی ما</button></div>
   <div id="p1"></div>
   <div id="p2" class="ab" style="display:none">
@@ -152,17 +193,22 @@ input[type=range]{width:100%;accent-color:var(--g2);margin:4px 0}
     <a data-x href="https://artag.ir" target="_blank" rel="noopener"><b>وب‌سایت</b><small>artag.ir</small></a>
     <a data-x href="https://eitaa.com/artagraph" target="_blank" rel="noopener"><b>کانال آرتاگراف</b><small>@artagraph</small></a>
   </div>
+  <button class="row" id="us" data-ns="1" style="margin-top:10px"><span>صدای دکمه‌ها</span><b id="ust"></b></button>
 </div></div>
 
 <script>
 const $=id=>document.getElementById(id);
-const ROW=[{n:"روضه‌ی اول",f:"rowzeh.mp3"},{n:"روضه‌ی دوم",f:"rowzeh2.mp3"}];
+let ROW=[{n:"روضه‌ی اول",f:"rowzeh.mp3"},{n:"روضه‌ی دوم",f:"rowzeh2.mp3"}];
 const IC={menu:'<path d="M4 7h16M4 12h16M4 17h16"/>',moon:'<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',book:'<path d="M4 4h12a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3z"/><path d="M4 17a3 3 0 0 1 3-3h12"/>',cal:'<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M9 15l2 2 4-4"/>',music:'<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',chev:'<path d="M6 9l6 6 6-6"/>',play:'<path class="f" d="M7 4l13 8-13 8z"/>',pause:'<path class="f" d="M6 4h4v16H6zM14 4h4v16h-4z"/>',bell:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'};
 const ic=n=>'<svg viewBox="0 0 24 24" class="i">'+IC[n]+'</svg>';
 const st=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}};
 const fa=n=>String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
 let W=null;try{W=window.Eitaa&&window.Eitaa.WebApp;if(W){W.ready&&W.ready();W.expand&&W.expand()}}catch(e){}
-document.addEventListener("click",e=>{const a=e.target.closest("a[data-x]");if(!a)return;try{if(W&&W.openLink){e.preventDefault();W.openLink(a.href)}}catch(x){}});
+function openX(u){
+  const tries=[()=>W.openTelegramLink(u),()=>W.openLink(u),()=>{if(!window.open(u,"_blank"))throw 0},()=>{location.href=u}];
+  for(const f of tries){try{f();return}catch(e){}}
+}
+document.addEventListener("click",e=>{const a=e.target.closest("a[data-x]");if(!a)return;e.preventDefault();openX(a.href);if(a.id==="gj")joinClicked()});
 
 /* آیکون‌ها */
 $("menu").innerHTML=ic("menu");$("dx").innerHTML=ic("x");$("tg").innerHTML=ic("chev");$("gi").innerHTML=ic("bell");
@@ -173,7 +219,9 @@ $("n1").innerHTML=ic("book")+"<span>زیارت</span>";$("n2").innerHTML=ic("cal
 let ok=st("joined")==="1";
 function enter(){$("gate").style.display="none";$("app").style.display="";$("nav").style.display="flex"}
 if(ok)enter();
-$("gok").onclick=()=>{st("joined","1");enter()};
+let jc=0,jt=0;
+function joinClicked(){if(jc)return;jc=1;let n=5;$("gok").textContent="کمی صبر کن… "+fa(n);jt=setInterval(()=>{n--;if(n<=0){clearInterval(jt);$("gok").disabled=false;$("gok").style.opacity=1;$("gok").textContent="۲) عضو شدم، ورود"}else $("gok").textContent="کمی صبر کن… "+fa(n)},1000)}
+$("gok").onclick=()=>{if($("gok").disabled)return;st("joined","1");enter()};
 
 /* تم، اندازه */
 const root=document.documentElement;
@@ -196,34 +244,49 @@ function view(v){
 $("n1").onclick=()=>view(1);$("n2").onclick=()=>view(2);$("c2").onclick=()=>view(2);
 
 /* منو */
-const dr=(on)=>$("dr").classList.toggle("on",on);
+const dr=(on)=>{$("dr").classList.toggle("on",on);on?sfx.open():sfx.close()};
 $("menu").onclick=()=>dr(true);$("c1").onclick=()=>dr(true);$("sc").onclick=()=>dr(false);$("dx").onclick=()=>dr(false);
 function tab(n){$("s1").classList.toggle("on",n===1);$("s2").classList.toggle("on",n===2);$("p1").style.display=n===1?"":"none";$("p2").style.display=n===2?"":"none"}
 $("s1").onclick=()=>tab(1);$("s2").onclick=()=>tab(2);
 
 /* روضه‌ها و پخش‌کننده */
 const au=new Audio();au.loop=true;au.preload="metadata";
-let ri=+st("rw")||0;if(ri>=ROW.length)ri=0;
+let ri=+st("rw")||0;
 const fmt=s=>{s=Math.floor(s||0);return fa(Math.floor(s/60)+":"+String(s%60).padStart(2,"0"))};
 function rows(){
   const p=$("p1");p.innerHTML="";
-  ROW.forEach((r,k)=>{const b=document.createElement("button");b.className="row"+(k===ri?" on":"");
-    b.innerHTML='<div class="dot" style="background:#8f5bff">'+ic("music")+'</div><span></span>';b.querySelector("span").textContent=r.n;
+  ROW.forEach((r,k)=>{const b=document.createElement("button");b.className="row"+(k===ri?" on":"");b.dataset.ns="1";
+    b.innerHTML='<div class="dot" style="background:#8f5bff">'+ic("music")+'</div><span></span>';b.querySelector("span").textContent=r.n+(r.s?" — "+r.s:"");
     b.onclick=()=>{setRow(k,true);dr(false);view(1)};p.appendChild(b)});
 }
 function setRow(k,play){
-  ri=k;st("rw",k);au.src=ROW[k].f;$("rn").textContent=ROW[k].n;$("chipn").textContent=ROW[k].n;
+  ri=k;st("rw",k);st("rwf",ROW[k].f);au.src=ROW[k].f.split("/").map(encodeURIComponent).join("/");$("rn").textContent=ROW[k].n;$("chipn").textContent=ROW[k].n;
   $("sk").value=0;$("cur").textContent="۰:۰۰";$("dur").textContent="۰:۰۰";$("er").textContent="";rows();
   if(play)au.play().catch(()=>{$("er").textContent="فایل صوتی پیدا نشد یا پخش نشد"});
 }
 $("pl").innerHTML=ic("play");
-$("pl").onclick=()=>{if(au.paused)au.play().catch(()=>{$("er").textContent="فایل صوتی پیدا نشد یا پخش نشد"});else au.pause()};
-au.onplay=()=>$("pl").innerHTML=ic("pause");au.onpause=()=>$("pl").innerHTML=ic("play");
+$("pl").onclick=()=>{au.paused?sfx.play():sfx.pause();if(au.paused)au.play().catch(()=>{$("er").textContent="فایل صوتی پیدا نشد یا پخش نشد"});else au.pause()};
+au.onplay=()=>{$("pl").innerHTML=ic("pause");$("pl").classList.add("on");$("eq").classList.add("on")};au.onpause=()=>{$("pl").innerHTML=ic("play");$("pl").classList.remove("on");$("eq").classList.remove("on")};
 au.onloadedmetadata=()=>{$("dur").textContent=fmt(au.duration);$("sk").max=Math.floor(au.duration)||100};
 au.ontimeupdate=()=>{$("cur").textContent=fmt(au.currentTime);$("sk").value=Math.floor(au.currentTime)};
 au.onerror=()=>{$("er").textContent="فایل صوتی هنوز اضافه نشده"};
 $("sk").oninput=e=>{au.currentTime=+e.target.value};
-setRow(ri,false);
+const rwNm=f=>{let b=f.replace(/\.[^.]+$/,"").replace(/^\d+[\s_.-]+/,"").replace(/_/g," ").trim(),n=b,m="";const k=b.split(" - ");if(k.length>1){n=k[0].trim();m=k.slice(1).join(" - ").trim()}return{n:n||f,s:m,f:f}};
+async function loadRow(){
+  let J=[];try{const r=await fetch("rowzeh.json",{cache:"no-cache"});if(r.ok){const a=await r.json();if(Array.isArray(a))J=a.filter(x=>x&&x.f).map(x=>({n:x.n?String(x.n):"",f:String(x.f),s:x.s?String(x.s):""}))}}catch(e){}
+  let files=null,c=null;try{c=JSON.parse(st("rwc")||"null")}catch(e){}
+  if(c&&Date.now()-c.t<300000)files=c.l;
+  if(!files){try{const o=location.hostname.split(".")[0],rp=location.pathname.split("/")[1];
+    const r=await fetch("https://api.github.com/repos/"+o+"/"+rp+"/contents/",{headers:{Accept:"application/vnd.github+json"}});
+    if(r.ok){const a=await r.json();files=a.filter(x=>x.type==="file"&&/\.(mp3|m4a|ogg|wav|aac)$/i.test(x.name)).map(x=>x.name);st("rwc",JSON.stringify({t:Date.now(),l:files}))}}catch(e){}}
+  if(!files&&c)files=c.l;
+  let L=[];
+  if(files){const set=new Set(files);J.forEach(x=>{if(set.has(x.f)){L.push({n:x.n||rwNm(x.f).n,s:x.s||rwNm(x.f).s,f:x.f});set.delete(x.f)}});[...set].sort((p,q)=>p.localeCompare(q,"fa",{numeric:true})).forEach(f=>L.push(rwNm(f)))}
+  else L=J.map(x=>({n:x.n||rwNm(x.f).n,s:x.s,f:x.f}));
+  if(L.length)ROW=L;
+  const k=ROW.findIndex(r=>r.f===st("rwf"));ri=k>=0?k:0;setRow(ri,false);
+}
+loadRow();
 
 /* متن زیارت: ziyarat.txt (بخش‌ها با --- جدا می‌شوند) */
 let parts=[],tr=[],cur=0,showTr=false;
@@ -250,7 +313,9 @@ let maxP=0;
 function prog(){
   if($("v-read").style.display==="none"||shut||!parts.length)return;
   const r=$("txt").getBoundingClientRect();if(!r.height)return;
-  const f=Math.max(0,Math.min(1,(innerHeight*0.6-r.top)/r.height));
+  const atEnd=innerHeight+scrollY>=document.documentElement.scrollHeight-8;
+  let f=Math.max(0,Math.min(1,(innerHeight*0.85-r.top)/r.height));
+  if(atEnd||r.bottom<=innerHeight*0.92)f=1;
   const p=Math.min(1,(cur+f)/parts.length);if(p>maxP)maxP=p;
   $("rpb").style.width=(maxP*100)+"%";
   $("rpn").textContent=fa(Math.round(maxP*100))+"٪";
@@ -258,20 +323,57 @@ function prog(){
 }
 addEventListener("scroll",prog,{passive:true});addEventListener("resize",prog);
 
-/* چله‌ی ۴۰ روزه (در حافظه‌ی برنامه ذخیره می‌شود) */
-let done=new Set();try{done=new Set(JSON.parse(st("chella")||"[]"))}catch(e){}
-function chella(){
+/* صدای دکمه‌ها (ملایم و مینیمال) */
+let UA=null,uOn=st("ui")!=="0";
+function blip(f1,f2,v,d,ty){if(!uOn)return;try{if(!UA)UA=new(window.AudioContext||window.webkitAudioContext)();if(UA.state==="suspended")UA.resume();const t0=UA.currentTime,o=UA.createOscillator(),g=UA.createGain();o.type=ty||"sine";o.frequency.setValueAtTime(f1,t0);o.frequency.exponentialRampToValueAtTime(f2,t0+d);g.gain.setValueAtTime(.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+.008);g.gain.exponentialRampToValueAtTime(.0001,t0+d);o.connect(g);g.connect(UA.destination);o.start(t0);o.stop(t0+d+.03)}catch(e){}}
+const sfx={tap:()=>blip(660,520,.05,.07),on:()=>{blip(520,780,.06,.12);setTimeout(()=>blip(780,1040,.04,.14),70)},lock:()=>blip(190,110,.09,.16,"triangle"),open:()=>blip(300,620,.045,.16),close:()=>blip(620,300,.045,.14),play:()=>blip(440,880,.05,.15),pause:()=>blip(700,400,.05,.12),done:()=>[523,659,784,1047].forEach((f,i)=>setTimeout(()=>blip(f,f*1.01,.06,.45),i*110))};
+document.addEventListener("pointerdown",e=>{const b=e.target.closest("button,a");if(b&&!b.dataset.ns&&!b.disabled)sfx.tap()},true);
+const usT=()=>$("ust").textContent=uOn?"روشن":"خاموش";usT();
+$("us").onclick=()=>{uOn=!uOn;st("ui",uOn?"1":"0");usT();sfx.tap()};
+
+/* چله‌ی ۴۰ روزه: روزها پشت‌سرهم باز می‌شوند */
+let done=0;
+{const n=st("cdone");if(n!==null&&n!==undefined)done=Math.max(0,Math.min(40,+n||0));else{try{const q=new Set(JSON.parse(st("chella")||"[]"));while(q.has(done+1))done++}catch(e){}}}
+const saveD=()=>st("cdone",done);
+const hintDef=()=>$("chh").textContent=done===40?"":"هر روز که خواندی، همان روز را تیک بزن؛ روز بعد باز می‌شود.";
+let hintT=0;
+function chella(pulse){
   const g=$("cg");g.innerHTML="";
-  for(let n=1;n<=40;n++){const b=document.createElement("button");b.className="cd"+(done.has(n)?" on":"");b.textContent=fa(n);
-    b.onclick=()=>{done.has(n)?done.delete(n):done.add(n);st("chella",JSON.stringify([...done].sort((a,b)=>a-b)));chella()};g.appendChild(b)}
-  const c=done.size;$("cc").textContent=fa(c)+" از "+fa(40);$("cb").style.width=(c/40*100)+"%";
-  $("chipc").textContent="چله "+fa(c)+"/"+fa(40);$("cm").style.display=c===40?"block":"none";
+  for(let n=1;n<=40;n++){
+    const b=document.createElement("button"),dn=n<=done,nx=n===done+1;
+    b.dataset.ns="1";b.className="cd"+(dn?" on":"")+(nx?" nx":"")+(!dn&&!nx?" lk":"")+(pulse===n?" new":"");b.textContent=fa(n);
+    b.onclick=()=>{
+      if(nx){done=n;saveD();sfx.on();if(done===40)setTimeout(sfx.done,250);chella(n)}
+      else if(n===done){done=n-1;saveD();sfx.tap();chella()}
+      else if(!dn){sfx.lock();b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake");$("chh").textContent="اول روز "+fa(done+1)+" را کامل کن 🔒";clearTimeout(hintT);hintT=setTimeout(hintDef,2200)}
+    };
+    g.appendChild(b)}
+  $("cc").textContent=fa(done)+" از "+fa(40);$("cb").style.width=(done/40*100)+"%";
+  $("chipc").textContent="چله "+fa(done)+"/"+fa(40);$("cm").style.display=done===40?"block":"none";hintDef();
 }
 let rs=0;$("cr").onclick=()=>{
-  if(!rs){rs=1;$("cr").textContent="مطمئنی؟ دوباره بزن";setTimeout(()=>{rs=0;$("cr").textContent="شروع دوباره‌ی چله"},3000)}
-  else{done.clear();st("chella","[]");rs=0;$("cr").textContent="شروع دوباره‌ی چله";chella()}
+  if(!rs){rs=1;sfx.lock();$("cr").textContent="مطمئنی؟ دوباره بزن";setTimeout(()=>{rs=0;$("cr").textContent="شروع دوباره‌ی چله"},3000)}
+  else{done=0;saveD();rs=0;$("cr").textContent="شروع دوباره‌ی چله";sfx.close();chella()}
 };
 chella();
+
+/* یادداشت‌ها */
+let notes=[];try{notes=JSON.parse(st("notes")||"[]")}catch(e){}
+const saveN=()=>st("notes",JSON.stringify(notes));
+function pday(){try{return fa(new Intl.DateTimeFormat("fa-IR-u-ca-persian",{year:"numeric",month:"long",day:"numeric"}).format(new Date()))}catch(e){return fa(new Date().toLocaleDateString())}}
+function renderN(fresh){
+  const l=$("nl");l.innerHTML="";
+  if(!notes.length){l.innerHTML='<div class="sm" style="margin-top:10px">هنوز یادداشتی ثبت نکرده‌ای.</div>';return}
+  notes.forEach((n,i)=>{
+    const d=document.createElement("div");d.className="nt"+(fresh===i?" new":"");
+    const h=document.createElement("div");h.className="nh";const sp=document.createElement("span");sp.textContent=(n.d?"روز "+fa(n.d)+" چله · ":"")+n.dt;
+    const xb=document.createElement("button");xb.className="nd";xb.textContent="✕";xb.dataset.ns="1";
+    xb.onclick=()=>{if(xb.dataset.c){notes.splice(i,1);saveN();sfx.tap();renderN()}else{xb.dataset.c=1;xb.textContent="حذف؟";sfx.lock();setTimeout(()=>{if(xb.isConnected){delete xb.dataset.c;xb.textContent="✕"}},2500)}};
+    h.appendChild(sp);h.appendChild(xb);const p=document.createElement("div");p.className="np";p.textContent=n.t;d.appendChild(h);d.appendChild(p);l.appendChild(d)})
+}
+$("ni").value=st("draft")||"";$("ni").oninput=()=>st("draft",$("ni").value);
+$("na").onclick=()=>{const t=$("ni").value.trim();if(!t){sfx.lock();return}notes.unshift({t:t,d:done,dt:pday()});saveN();$("ni").value="";st("draft","");sfx.on();renderN(0)};
+renderN();
 </script>
 </body>
 </html>
