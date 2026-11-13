@@ -132,6 +132,9 @@ textarea:focus{border-color:var(--g2);box-shadow:0 0 0 3px var(--glow)}
 .bar2 i,.rp .b i{background-size:200% 100%}
 .bar2 i{animation:mv 1.6s linear infinite}
 @keyframes mv{to{background-position:32px 0}}
+.sp{position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:4;padding:8px 12px;border-radius:20px;background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.sp .pl{width:46px;height:46px}.sp .pl .i{width:20px;height:20px}
+.sp input[type=range]{margin:2px 0}
 .rp .b i{position:relative;overflow:hidden;transition:width .7s cubic-bezier(.22,.9,.3,1);animation:bf 7s ease-in-out infinite alternate}
 @keyframes bf{from{background-position:0 0}to{background-position:100% 0}}
 .rp .b i::after{content:"";position:absolute;top:-2px;bottom:-2px;left:0;width:60%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18) 30%,rgba(255,255,255,.55) 50%,rgba(255,255,255,.18) 70%,transparent);filter:blur(2px);opacity:0;transform:translateX(-110%);will-change:transform,opacity;animation:bs 3.8s cubic-bezier(.4,.1,.25,1) infinite}
@@ -186,7 +189,7 @@ textarea:focus{border-color:var(--g2);box-shadow:0 0 0 3px var(--glow)}
       <button class="chip" id="c1" data-ns="1"><div class="dot" style="background:#8f5bff" id="c1i"></div><span id="chipn"></span></button>
       <button class="chip" id="c2"><div class="dot" style="background:#ff8a3d" id="c2i"></div><span id="chipc"></span></button>
     </div>
-    <div class="card">
+    <div class="card sp">
       <div class="pr">
         <button class="pl" id="pl" data-ns="1" aria-label="پخش"></button>
         <div class="m"><div><b id="rn" style="display:inline"></b><span class="eq" id="eq"><i></i><i></i><i></i><i></i></span></div>
